@@ -19,7 +19,7 @@ def before_scenario(context, scenario):
     # For some reason, python doesn't have switch case -
     if BROWSER == 'chrome':
         options = Options()
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         context.browser = webdriver.Chrome(chrome_options=options)
 
     context.browser.maximize_window()
