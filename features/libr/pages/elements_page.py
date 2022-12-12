@@ -11,6 +11,7 @@ class ElementsPage(BasePage):
     locator_dictionary = {
         "elements_text_box": (By.XPATH, "//span[text()='Text Box']"),
         "elements_check_box": (By.XPATH, "//span[text()='Check Box']"),
+        "elements_radio_button": (By.XPATH, "//span[text()='Radio Button']"),
         "elements_header": (By.XPATH, "//div[@class='main-header']")
     }
 
@@ -39,4 +40,15 @@ class ElementsPage(BasePage):
             "expand_button": (By.XPATH, "//button[@title='Toggle']"),
             "expand_all_button": (By.XPATH, "//button[@title='Expand all']"),
             "list_of_checkboxes": (By.XPATH, "//span[@class='rct-title']")
+        }
+
+    class RadioButton(BasePage):
+        def __init__(self, context):
+            BasePage.__init__(self, context.browser, base_url="https://demoqa.com/")
+
+        locator_dictionary = {
+            "elements_header": (By.XPATH, "//div[@class='main-header']"),
+            "yes_radio": (By.XPATH, "//label[@for='yesRadio']"),
+            "impressive_radio": (By.XPATH, "//label[@for='impressiveRadio']"),
+            "success_text": (By.XPATH, "//span[@class='text-success']")
         }

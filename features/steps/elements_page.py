@@ -25,6 +25,12 @@ def step_impl(context):
     page.elements_text_box.click()
 
 
+@when("I click on radio button in the menu")
+def step_impl(context):
+    page = ElementsPage(context)
+    page.elements_radio_button.click()
+
+
 @when('I enter full name "([^"]*)"')
 def step_impl(context, full_name):
     page = ElementsPage(context).TextBox(context)
@@ -92,9 +98,27 @@ def step_impl(context):
     page.expand_all_button.click()
 
 
-@step('I select "([^"]*)" checkbox')
+@When('I select "([^"]*)" checkbox')
 def step_impl(context, value):
     page = ElementsPage(context).CheckBox(context)
     for checkbox in page.list_of_checkboxes:
         if checkbox.text == value:
             checkbox.click()
+
+
+@When("I select 'Yes' radio button")
+def step_impl(context):
+    page = ElementsPage(context).RadioButton(context)
+    page.yes_radio.click()
+
+
+@When("I select 'Impressive' radio button")
+def step_impl(context):
+    page = ElementsPage(context).RadioButton(context)
+    page.impressive_radio.click()
+
+
+@Then('I verify bottom text "([^"]*)" with radio button selected')
+def step_impl(context, value):
+    page = ElementsPage(context).RadioButton(context)
+    assert value == page.success_text.text
