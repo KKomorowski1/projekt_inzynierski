@@ -31,6 +31,12 @@ def step_impl(context):
     page.elements_radio_button.click()
 
 
+@when("I click on web tables in the menu")
+def step_impl(context):
+    page = ElementsPage(context)
+    page.elements_web_tables.click()
+
+
 @when('I enter full name "([^"]*)"')
 def step_impl(context, full_name):
     page = ElementsPage(context).TextBox(context)
@@ -122,3 +128,99 @@ def step_impl(context):
 def step_impl(context, value):
     page = ElementsPage(context).RadioButton(context)
     assert value == page.success_text.text
+
+
+@When('I click add button')
+def step_impl(context):
+    page = ElementsPage(context).WebTables(context)
+    page.add_button.click()
+
+
+@When('I click trash can on user number "([^"]*)"')
+def step_impl(context, value):
+    page = ElementsPage(context).WebTables(context)
+    page.delete_buttons[int(value) - 1].click()
+    time.sleep(5)
+
+
+@When('I click edit on user number "([^"]*)"')
+def step_impl(context, value):
+    page = ElementsPage(context).WebTables(context)
+    page.edit_buttons[int(value) - 1].click()
+
+
+@When('I enter "([^"]*)" as first name')
+def step_impl(context, first_name):
+    page = ElementsPage(context).WebTables(context)
+    page.first_name_input.clear()
+    page.first_name_input.send_keys(first_name)
+
+
+@When('I enter "([^"]*)" as last name')
+def step_impl(context, last_name):
+    page = ElementsPage(context).WebTables(context)
+    page.last_name_input.clear()
+    page.last_name_input.send_keys(last_name)
+
+
+@When('I enter "([^"]*)" as email')
+def step_impl(context, email):
+    page = ElementsPage(context).WebTables(context)
+    page.email_input.clear()
+    page.email_input.send_keys(email)
+
+
+@When('I enter "([^"]*)" as age')
+def step_impl(context, age):
+    page = ElementsPage(context).WebTables(context)
+    page.age_input.clear()
+    page.age_input.send_keys(age)
+
+
+@When('I enter "([^"]*)" as salary')
+def step_impl(context, salary):
+    page = ElementsPage(context).WebTables(context)
+    page.salary_input.clear()
+    page.salary_input.send_keys(salary)
+
+
+@When('I enter "([^"]*)" as department')
+def step_impl(context, department):
+    page = ElementsPage(context).WebTables(context)
+    page.department_input.clear()
+    page.department_input.send_keys(department)
+
+
+@When('I click submit button in form')
+def step_impl(context):
+    page = ElementsPage(context).WebTables(context)
+    page.submit_button.click()
+    time.sleep(5)
+
+
+@Then('I verify data is in table: "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"')
+def step_impl(context, first_name, last_name, email, age, salary, department):
+    page = ElementsPage(context).WebTables(context)
+    data_from_table = []
+    for i in page.data_in_table:
+        data_from_table.append(i.text)
+    assert first_name in data_from_table
+    assert last_name in data_from_table
+    assert email in data_from_table
+    assert age in data_from_table
+    assert salary in data_from_table
+    assert department in data_from_table
+
+
+@Then('I verify data is not in table: "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"')
+def step_impl(context, first_name, last_name, email, age, salary, department):
+    page = ElementsPage(context).WebTables(context)
+    data_from_table = []
+    for i in page.data_in_table:
+        data_from_table.append(i.text)
+    assert first_name not in data_from_table
+    assert last_name not in data_from_table
+    assert email not in data_from_table
+    assert age not in data_from_table
+    assert salary not in data_from_table
+    assert department not in data_from_table
