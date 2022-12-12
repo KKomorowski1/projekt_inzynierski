@@ -1,6 +1,23 @@
 Feature: Elements check box
   Test features available in landing_page->elements_page->check_box_page
 
+#  Scenario Outline: Clicking on <value> and verifying message at the bottom
+#    Given I open demoqa website
+#    When I click Elements Card
+#    Then I verify that elements page was opened successfully
+#    When I click on check box in the menu
+#    When I expand full tree
+#    When I select <value> checkbox
+#    Then Verify text of what was selected is showing
+#
+#    Examples: Test
+#    | value     |
+#    | Desktop   |
+#    | Documents |
+#    | Office    |
+#    | Downloads |
+
+
   Scenario: I click on check box next to Desktop
     Given I open demoqa website
     When I click Elements Card
