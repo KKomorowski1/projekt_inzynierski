@@ -1,6 +1,5 @@
 from behave import *
 
-from features.libr.pages.elements_page import ElementsPage
 from features.libr.pages.landing_page import LandingPage
 
 use_step_matcher("re")

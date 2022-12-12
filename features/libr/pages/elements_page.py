@@ -24,6 +24,6 @@ class ElementsPage(BasePage):
             "permanent_address_text_box": (By.ID, "permanentAddress"),
             "full_name_text_box": (By.ID, "userName"),
             "submit_button": (By.ID, "submit"),
-            "result_table": (By.ID, "output")
+            "result_table": (By.XPATH, "//div[@id='output']//div")
         }
 

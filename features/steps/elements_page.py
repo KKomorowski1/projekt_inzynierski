@@ -50,4 +50,17 @@ def step_impl(context):
 @Then('I verify that form was processed')
 def step_impl(context):
     page = ElementsPage(context).TextBox(context)
-    assert page.result_table is not None
+    assert 'border' in page.result_table.get_attribute('class')
+
+
+@Then('I verify email has red border')
+def step_impl(context):
+    page = ElementsPage(context).TextBox(context)
+    assert 'field-error' in page.email_text_box.get_attribute('class')
+
+
+@Then('I verify that result table did not appear')
+def step_impl(context):
+    page = ElementsPage(context).TextBox(context)
+    assert 'border' not in page.result_table.get_attribute('class')
+
