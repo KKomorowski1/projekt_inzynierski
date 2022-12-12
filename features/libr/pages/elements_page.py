@@ -23,6 +23,7 @@ class ElementsPage(BasePage):
             "current_address_text_box": (By.ID, "currentAddress"),
             "permanent_address_text_box": (By.ID, "permanentAddress"),
             "full_name_text_box": (By.ID, "userName"),
-            "submit_button": (By.ID, "submit")
+            "submit_button": (By.ID, "submit"),
+            "result_table": (By.ID, "output")
         }
 
