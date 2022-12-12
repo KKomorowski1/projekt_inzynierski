@@ -10,14 +10,21 @@ class BasePage(object):
         self.browser = browser
         self.base_url = base_url
         self.timeout = 30
+    #
+    # def find_element(self, *loc):
+    #     return self.browser.find_element(*loc)
 
-    def find_element(self, *loc):
-        return self.browser.find_element(*loc)
+    def find_elements(self, *loc):
+        return self.browser.find_elements(*loc)
 
     def find_and_scroll_to_element(self, *loc):
-        element = self.find_element(*loc)
-        self.browser.execute_script("arguments[0].scrollIntoView();", element)
-        return element
+        elements = self.find_elements(*loc)
+        if len(elements) == 1:
+            self.browser.execute_script("arguments[0].scrollIntoView();", elements[0])
+            return elements[0]
+        else:
+            self.browser.execute_script("arguments[0].scrollIntoView();", elements[0])
+            return elements
 
     def open_website(self, url):
         self.browser.get(url)
@@ -39,7 +46,6 @@ class BasePage(object):
                     traceback.print_exc()
                 return self.find_and_scroll_to_element(*self.locator_dictionary[element])
         except AttributeError:
-            time.sleep(10)
             super(BasePage, self).__getattribute__("missing_method")(element)
 
     def missing_method(self, element):

@@ -1,3 +1,5 @@
+import time
+
 from behave import *
 
 from features.libr.pages.elements_page import ElementsPage
@@ -9,6 +11,12 @@ use_step_matcher("re")
 def step_impl(context):
     page = ElementsPage(context)
     assert page.elements_header.text is not None
+
+
+@when("I click on check box in the menu")
+def step_impl(context):
+    page = ElementsPage(context)
+    page.elements_check_box.click()
 
 
 @when("I click on text box in the menu")
@@ -64,3 +72,29 @@ def step_impl(context):
     page = ElementsPage(context).TextBox(context)
     assert 'border' not in page.result_table.get_attribute('class')
 
+
+@When('I click on check box next to home')
+def step_impl(context):
+    page = ElementsPage(context).CheckBox(context)
+    page.home_check_box.click()
+    time.sleep(5)
+
+
+@Then("Verify text of what was selected is showing")
+def step_impl(context):
+    page = ElementsPage(context).CheckBox(context)
+    assert page.result_text is not None
+
+
+@When("I expand full tree")
+def step_impl(context):
+    page = ElementsPage(context).CheckBox(context)
+    page.expand_all_button.click()
+
+
+@step('I select "([^"]*)" checkbox')
+def step_impl(context, value):
+    page = ElementsPage(context).CheckBox(context)
+    for checkbox in page.list_of_checkboxes:
+        if checkbox.text == value:
+            checkbox.click()

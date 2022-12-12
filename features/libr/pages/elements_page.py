@@ -10,6 +10,7 @@ class ElementsPage(BasePage):
 
     locator_dictionary = {
         "elements_text_box": (By.XPATH, "//span[text()='Text Box']"),
+        "elements_check_box": (By.XPATH, "//span[text()='Check Box']"),
         "elements_header": (By.XPATH, "//div[@class='main-header']")
     }
 
@@ -27,3 +28,15 @@ class ElementsPage(BasePage):
             "result_table": (By.XPATH, "//div[@id='output']//div")
         }
 
+    class CheckBox(BasePage):
+        def __init__(self, context):
+            BasePage.__init__(self, context.browser, base_url="https://demoqa.com/")
+
+        locator_dictionary = {
+            "elements_header": (By.XPATH, "//div[@class='main-header']"),
+            "home_check_box": (By.XPATH, "//span[text()='Home']"),
+            "result_text": (By.ID, "result"),
+            "expand_button": (By.XPATH, "//button[@title='Toggle']"),
+            "expand_all_button": (By.XPATH, "//button[@title='Expand all']"),
+            "list_of_checkboxes": (By.XPATH, "//span[@class='rct-title']")
+        }
